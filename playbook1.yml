@@ -1,0 +1,29 @@
+- name: Test Connection to my servers
+  hosts: all
+  become: yes
+
+  tasks:
+
+  - name: ping my servers
+    ping:
+
+  - name: Clone a github repository
+    git:
+      repo: https://github.com/antonK2234/test-repo.git
+      dest: /home/ubuntu/project1
+      clone: yes
+      update: yes
+
+  - name: Install a list of packages
+    apt:
+      pkg:
+      - python3-venv
+
+        # - name: Create the initial virtualenv
+        #command:
+        # cmd: python3 -m venv /myproject/myprojectenv
+        #creates: "/myproject/myprojectenv"
+
+  - name: Install specified python requirements
+    pip:
+      requirements: /home/ubuntu/project1/requirements.txt
