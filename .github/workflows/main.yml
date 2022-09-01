@@ -17,8 +17,3 @@ jobs:
       uses: shimataro/ssh-key-action@v2
       with:
          key: ${{ secrets.ANTON_KEY }}
-         
-    - name: write inventory to file
-    env:
-      INVENTORY: ${{ secrets.INVENTORY }}
-      run: 'echo "$INVENTORY" > inventory'
