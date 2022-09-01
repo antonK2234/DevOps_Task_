@@ -41,7 +41,7 @@ jobs:
           key: ${{ secrets.ANTON_KEY }}
           name: id_rsa # optional
           known_hosts: ${{ secrets.INVENTORY }}
-          # config: ${{ secrets.CONFIG }}
+          config: ${{ secrets.CONFIG }}
           if_key_exists: fail # replace / ignore / fail; optional (defaults to fail)
         
       - name: run playbook
