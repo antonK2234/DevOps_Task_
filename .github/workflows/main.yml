@@ -50,4 +50,4 @@ jobs:
         env:
           INVENTORY: ${{ secrets.INVENTORY }}
         run: |
-          ansible-playbook -i ${{ secrets.INVENTORY }} playbook1.yml
+          ansible-playbook -i hosts.ini playbook1.yml
