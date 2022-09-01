@@ -19,10 +19,10 @@
       pkg:
       - python3-venv
 
-   - name: Create the initial virtualenv
-     command:
-       cmd: python3 -m venv /myproject/myprojectenv
-       creates: "/myproject/myprojectenv"
+  - name: Create the initial virtualenv
+    command:
+      cmd: python3 -m venv /myproject/myprojectenv
+      creates: "/myproject/myprojectenv"
 
   - name: Install specified python requirements
     pip:
