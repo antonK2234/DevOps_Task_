@@ -48,9 +48,3 @@ jobs:
       - name: run playbook
         run: |
           ansible-playbook -i hosts.ini playbook1.yml
-=======
-          directory: test
-          vault_password: test
-          requirements: requirements.yml
-###################
->>>>>>> 4d8113c17357a65160575503fc60d08356093c1f
