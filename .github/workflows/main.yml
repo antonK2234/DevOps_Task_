@@ -36,11 +36,6 @@ jobs:
           INVENTORY: ${{ secrets.INVENTORY }}
           run: 'echo "$INVENTORY" > inventory'
           
-      # - name: Install key
-      #   run: mkdir "$HOME/.ssh"
-      #   run: echo "${{ secrets.ANTON_KEY }}" > "$HOME/.ssh/ANTON_KEY"
-      #   run: chmod 600 "$HOME/.ssh/ANTON_KEY"
-          
       - name: Install SSH key
         uses: shimataro/ssh-key-action@v2
         with:
