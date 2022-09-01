@@ -7,7 +7,7 @@ jobs:
   part_1:
     runs-on: ubuntu-latest
     steps:
-      - uses: ubuntu/checkout@v3
+      - uses: actions/checkout@v3
       
       - name: Run ansible-lint
         uses: ansible-community/ansible-lint-action@v6.0.2
@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [ part_1 ] 
     steps:
-      - uses: ubuntu/checkout@v3
+      - uses: actions/checkout@v3
       - name: Set up Python 3.9
         uses: actions/setup-python@v2
         with:
@@ -30,13 +30,13 @@ jobs:
           if [ -f test-requirements.txt ]; then pip install -r test-requirements.txt; fi
       
       - name: write inventory to file
-        uses: ubuntu/setup-python@v2
+        uses: actions/checkout@v3
         env:
           INVENTORY: ${{ secrets.INVENTORY }}
           run: 'echo "$INVENTORY" > inventory'
           
       - name: Install SSH key
-        uses: ubuntu/ssh-key-action@v2
+        uses: actions/ssh-key-action@v2
         with:
           key: ${{ secrets.ANTON_KEY }}
           name: id_rsa # optional
@@ -46,4 +46,4 @@ jobs:
         
       - name: run playbook
         run: |
-          ansible-playbook -i hosts.ini playbook1.yml -u admin
+          ansible-playbook -i hosts.ini playbook1.yml
