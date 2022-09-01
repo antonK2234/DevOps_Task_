@@ -28,6 +28,10 @@ jobs:
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
           if [ -f test-requirements.txt ]; then pip install -r test-requirements.txt; fi
+           run: set -eu
+           run: mkdir "$HOME/.ssh"
+           run: echo "${{ secrets.ANTON_KEY }}" > "$HOME/.ssh/ANTON_KEY"
+           run: chmod 600 "$HOME/.ssh/ANTON_KEY"
       
       - name: write inventory to file
         uses: actions/checkout@v3
