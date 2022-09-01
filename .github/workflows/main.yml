@@ -1,50 +1,37 @@
-name: Test Deploy
+name: Test Action
+
 on:
   push:
-    branches: [ main ]
-  workflow_dispatch:
+    branches:
+      - master
+
 jobs:
-  part_1:
+  remote:
     runs-on: ubuntu-latest
     
     steps:
-      - uses: actions/checkout@v3
-      - name: Run ansible-lint
-        uses: ansible-community/ansible-lint-action@v6.0.2
-        with:
-          args: "ansible" 
-  
-  run-playbook:
-    runs-on: ubuntu-latest
-    needs: [ part_1 ] 
-    steps:
-      - uses: actions/checkout@v3
-      - name: Set up Python 3.9
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.9
-      
-      - name: Install dependencies Including Ansible
-        run: |
-          python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-          if [ -f test-requirements.txt ]; then pip install -r test-requirements.txt; fi
-          
-      - name: write inventory to file
+      - name: Checkout code
         uses: actions/checkout@v3
-        env:
-          INVENTORY: ${{ secrets.INVENTORY }}
-          run: 'echo "$INVENTORY" > inventory'
-          
-      - name: Install SSH key
-        uses: shimataro/ssh-key-action@v2
-        with:
-          key: ${{ secrets.ANTON_KEY }}
-          name: id_rsa
-          known_hosts: ${{ secrets.INVENTORY }}
-          config: ${{ secrets.CONFIG }}
-          if_key_exists: fail 
-        
-      - name: run playbook
+      - name: Setup remote
         run: |
-          ansible-playbook -i hosts.ini playbook1.yml
+          echo "${{ secrets.ANTON_KEY }}" | sudo tee /etc/ssh/authorized_keys
+          sudo tee /etc/ssh/sshd_config <<EOF
+            PasswordAuthentication no
+            PubkeyAuthentication yes
+            AuthorizedKeysFile /etc/ssh/authorized_keys
+            PermitRootLogin no
+            Subsystem sftp /usr/lib/openssh/sftp-server
+          EOF
+          sudo systemctl restart sshd
+          echo 'SSH_KNOWN_HOSTS<<EOF' >> $GITHUB_ENV
+          echo $(ssh-keyscan localhost) >> $GITHUB_ENV
+          echo 'EOF' >> $GITHUB_ENV
+      - name: With everything
+        uses: ./
+        with:
+          playbook: playbook1.yml
+          key: ${{ secrets.ANTON_KEY }}
+          known_hosts: ${{ secrets.INVENTORY }}
+          directory: test
+          vault_password: test
+          requirements: requirements.yml
