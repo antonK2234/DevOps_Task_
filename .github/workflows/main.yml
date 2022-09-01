@@ -36,7 +36,7 @@ jobs:
           run: 'echo "$INVENTORY" > inventory'
           
       - name: Install SSH key
-        uses: actions/ssh-key-action@v2
+        uses: shimataro/ssh-key-action@v2
         with:
           key: ${{ secrets.ANTON_KEY }}
           name: id_rsa # optional
