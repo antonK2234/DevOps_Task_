@@ -14,16 +14,16 @@
       clone: yes
       update: yes
 
-  - name: Install a list of packages
-    apt:
-      pkg:
-      - python3-venv
+  # - name: Install a list of packages
+  #   apt:
+  #     pkg:
+  #     - python3-venv
 
-  - name: Create the initial virtualenv
-    command:
-      cmd: python3 -m venv /myproject/myprojectenv
-      creates: "/myproject/myprojectenv"
+  # - name: Create the initial virtualenv
+  #   command:
+  #     cmd: python3 -m venv /myproject/myprojectenv
+  #     creates: "/myproject/myprojectenv"
 
-  - name: Install specified python requirements
-    pip:
-      requirements: /home/ubuntu/project1/requirements.txt
+  # - name: Install specified python requirements
+  #   pip:
+  #     requirements: /home/ubuntu/project1/requirements.txt
