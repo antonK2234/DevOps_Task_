@@ -42,12 +42,7 @@ jobs:
           known_hosts: ${{ secrets.INVENTORY }}
           # config: ${{ secrets.CONFIG }} # ssh_config; optional
           if_key_exists: fail # replace / ignore / fail; optional (defaults to fail)
-      
-      - name: Git clone yuor repo
-        uses: actions/checkout@v1
         
       - name: run playbook
-        env:
-          INVENTORY: ${{ secrets.INVENTORY }}
         run: |
           ansible-playbook -i hosts.ini playbook1.yml
