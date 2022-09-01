@@ -47,4 +47,4 @@ jobs:
         
       - name: run playbook
         run: |
-          ansible-playbook -i inventory playbook1.yml
+          ansible-playbook all -i inventory playbook1.yml
