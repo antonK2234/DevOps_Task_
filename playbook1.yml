@@ -10,7 +10,7 @@
   - name: Clone a github repository
     git:
       repo: https://github.com/antonK2234/test-repo.git
-      dest: /home/ubuntu/project1
+      dest: /home/project1
       clone: yes
       update: yes
 
