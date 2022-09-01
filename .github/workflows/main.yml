@@ -40,6 +40,10 @@ jobs:
       #   run: mkdir "$HOME/.ssh"
       #   run: echo "${{ secrets.ANTON_KEY }}" > "$HOME/.ssh/ANTON_KEY"
       #   run: chmod 600 "$HOME/.ssh/ANTON_KEY"
+
+      - name: accept new ssh fingerprints
+        shell: ssh-keyscan -H {{ item.public_ip }} >> ~/.ssh/known_hosts
+        with_items: ec2.instances
           
       - name: Install SSH key
         uses: shimataro/ssh-key-action@v2
