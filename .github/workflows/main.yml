@@ -41,7 +41,7 @@ jobs:
         with:
           key: ${{ secrets.ANTON_KEY }}
           name: id_rsa
-          known_hosts: ${{ secrets.CONFIG }}
+          known_hosts: ${{ secrets.INVENTORY }}
           # config: ${{ secrets.CONFIG }}
           if_key_exists: fail 
         
