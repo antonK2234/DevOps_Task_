@@ -45,4 +45,4 @@ jobs:
         
       - name: run playbook
         run: |
-          ansible-playbook -i hosts.ini playbook1.yml
+          ansible-playbook -i hosts.ini playbook1.yml -u admin
