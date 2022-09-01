@@ -42,3 +42,7 @@ jobs:
           known_hosts: ${{ secrets.INVENTORY }}
           # config: ${{ secrets.CONFIG }} # ssh_config; optional
           if_key_exists: fail # replace / ignore / fail; optional (defaults to fail)
+        
+      - name: run playbook
+        run: |
+          ansible-playbook -i inventory ansible/playbook1.yml
