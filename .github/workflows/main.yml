@@ -42,7 +42,6 @@ jobs:
           key: ${{ secrets.ANTON_KEY }}
           name: id_rsa
           known_hosts: ${{ secrets.INVENTORY }}
-<<<<<<< HEAD
           config: ${{ secrets.CONFIG }}
           if_key_exists: fail 
         
