@@ -47,4 +47,4 @@ jobs:
         
       - name: run playbook
         run: |
-          ansible-playbook all -i inventory playbook1.yml
+          ansible-playbook playbook1.yml -i hosts.ini
