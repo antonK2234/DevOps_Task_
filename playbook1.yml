@@ -7,9 +7,9 @@
   - name: ping my servers
     ping:
 
-  - name: "Install apache"
+  - name: "Install git"
     ansible.builtin.apt:
-      name: "apache2"
+      name: "git"
       state: "latest"
       update_cache: true
 
