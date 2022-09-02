@@ -7,6 +7,12 @@
   - name: ping my servers
     ping:
 
+  - name: "Install apache"
+    ansible.builtin.apt:
+      name: "apache2"
+      state: "latest"
+      update_cache: true
+
   - name: Clone a github repository
     git:
       repo: https://github.com/antonK2234/test-repo.git
