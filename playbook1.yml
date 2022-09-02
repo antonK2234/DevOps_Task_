@@ -27,8 +27,8 @@
 
   - name: Create the initial virtualenv
     command:
-      cmd: python3 -m venv /myproject/myprojectenv
-      creates: "/myproject/myprojectenv"
+      cmd: python3 -m venv /home/project1/venv
+      creates: "/home/project1/venv"
 
   - name: Install specified python requirements
     pip:
