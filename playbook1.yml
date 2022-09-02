@@ -1,4 +1,4 @@
-- name: Test Connection to my servers
+- name: Deploy my requirements
   hosts: all
   become: yes
 
