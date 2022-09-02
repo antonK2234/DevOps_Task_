@@ -32,4 +32,4 @@
 
   - name: Install specified python requirements
     pip:
-      requirements: /home/ubuntu/project1/requirements.txt
+      requirements: /home/project1/requirements.txt
